@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import './App.css'
-import NavBar from './components/NavBar'
-import ItemListContainer from './components/ItemListContainer'
+import Main from './components/Main'
+import Header from './components/Header'
+import Footer from './components/Footer'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -9,8 +10,10 @@ function App() {
   return (
     <div>
     
-      <NavBar/>
-      <ItemListContainer text="Tutores"/>
+      <Header/>
+      <Main/>
+      <Footer/>
+      
     </div>
   )
 }
