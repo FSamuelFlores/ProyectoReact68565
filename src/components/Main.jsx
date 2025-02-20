@@ -3,9 +3,9 @@ import ItemListContainer from './ItemListContainer'
 
 const Main = () => {
   return (
-    <div>
+    <main className='main'>
       <ItemListContainer text="Tutores"/>
-    </div>
+    </main>
   )
 }
 
