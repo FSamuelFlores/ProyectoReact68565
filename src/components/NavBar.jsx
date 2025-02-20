@@ -28,8 +28,8 @@ const NavBar = () => {
       </form>
     </div>
   </div>
-</nav>
-<CartWidget/>
+  <CartWidget/>
+      </nav>
     </>
   )
 }
