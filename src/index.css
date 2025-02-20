@@ -68,8 +68,8 @@ button:focus-visible {
 }
 
 
-#root{
-  min-height: 100 dvh;
+#root {
+  min-height: 100%;
   display: flex;
   flex-direction: column;
 
