@@ -1,9 +1,32 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import ItemList from "./ItemList";
+import { useParams } from "react-router-dom";
 
-const ItemListContainer = (props) => {
+
+const ItemListContainer = () => {
+
+const [resultado, setResultado] = useState([])
+const params = useParams ()
+
+useEffect (()=>{
+  
+  fetch(params.id === undefined ? '/productos.json' : `/${params.id}.json` )
+  .then((res) => {
+    return res.json()
+})
+.then((res) => {
+  setResultado(res)
+});
+}, [params.id])
+
   return (
-
-      <h2>Bienvenidos a mi Ecommerce {props.text}</h2>
+    <div className="grid-section">
+        {resultado.map((producto) =>{
+              return (
+              <ItemList key={producto.id} producto={producto}/>
+              )
+    })}
+    </div>
   )
 }
 
