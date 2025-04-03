@@ -1,6 +1,5 @@
 import React from 'react'
 import CartWidget from './CartWidget'
-import { NavLink } from 'react-router-dom'
 
 const NavBar = () => {
   return (
@@ -30,8 +29,8 @@ const NavBar = () => {
         <button class="btn btn-outline-success" type="submit">Buscar</button>
       </form>
     </div>
+    <CartWidget/>
   </div>
-  <CartWidget/>
       </nav>
     </>
   )

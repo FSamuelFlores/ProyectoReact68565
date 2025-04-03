@@ -1,10 +1,17 @@
-import React from 'react'
+import { useContext } from 'react'
+import { carritoContext } from './CarritoContext'
+import { NavLink } from 'react-router-dom'
+
 
 const CartWidget = () => {
+
+  const valor = useContext(carritoContext)
+
+
   return (
-    <div>
-      <img src="/carrito.svg"alt="carrito-compras"/> <p>1</p>
-    </div>
+    <NavLink viewTransition to="/carrito">
+      <img src="/carrito.svg"alt="carrito-compras"/> {valor.cantProd}
+    </NavLink>
   )
 }
 

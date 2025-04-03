@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
+import {} from "firebase/firestore";
+import {app} from "../firebaseConfig";
+
 
 
 const ItemListContainer = () => {
@@ -18,6 +21,9 @@ useEffect (()=>{
   setResultado(res)
 });
 }, [params.id])
+
+
+
 
   return (
     <div className="grid-section">
