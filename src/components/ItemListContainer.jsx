@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList";
 import { useParams } from "react-router-dom";
-import {} from "firebase/firestore";
+import { collection, getDocs, getFirestore, where, query} from "firebase/firestore";
 import {app} from "../firebaseConfig";
 
 
@@ -12,24 +12,44 @@ const [resultado, setResultado] = useState([])
 const params = useParams ()
 
 useEffect (()=>{
+
+  const db = getFirestore(app)
+  const productosCollection = collection(db, "productos")
+
+  let miConsulta;
   
-  fetch(params.id === undefined ? '/productos.json' : `/${params.id}.json` )
-  .then((res) => {
-    return res.json()
-})
-.then((res) => {
-  setResultado(res)
-});
+
+  if(params.id === undefined){
+
+    miConsulta = getDocs(productosCollection)
+
+
+  }else {
+    const filtro = query (productosCollection, where("category", "==", params.id))
+    miConsulta = getDocs(filtro)
+
+}
+
+  miConsulta
+  .then((respuesta) => {
+    const productosFormato= []
+
+    respuesta.docs.forEach((doc)=>{
+      productosFormato.push(doc.data())
+
+    })
+
+    setResultado(productosFormato)
+  })
+
 }, [params.id])
-
-
-
 
   return (
     <div className="grid-section">
         {resultado.map((producto) =>{
               return (
-              <ItemList key={producto.id} producto={producto}/>
+              <ItemList key={producto.id}
+               producto={producto}/>
               )
     })}
     </div>

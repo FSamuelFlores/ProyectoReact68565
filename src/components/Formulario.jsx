@@ -1,5 +1,8 @@
 import { useState } from "react"
 import Input from "./Input"
+import { addDoc, collection, getFirestore } from "firebase/firestore"
+import toast from "react-hot-toast"
+import { app } from "../firebaseConfig"
 
 
 function Formulario() {
@@ -22,6 +25,24 @@ function Formulario() {
     const handleInputValueTelefono = (data) => {
         setValorDelInputTelefono(data)
     } 
+    
+    const handleClick = async () => {
+    
+    
+        const db = getFirestore(app)
+        const carritoCollection = collection(db, "carrito")
+        const miConsulta = addDoc(carritoCollection, nuevoProducto)
+
+        miConsulta
+            .then(() => {
+                valor.handleAgregar(producto)
+                toast.success ("Producto agregado al carrito")
+            })
+            .catch(() => {
+                console.log("Salio todo mal")
+            })
+        }
+
 
     return (
         <div>
@@ -45,7 +66,7 @@ function Formulario() {
                         onInputValue={handleInputValueTelefono}
                     />
                 </div>
-                <button type="submit">Comprar</button>
+                <button onClick={handleClick}>Finalizar Compra</button>
             </form>
         </div>
         )

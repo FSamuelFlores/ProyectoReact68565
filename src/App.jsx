@@ -5,6 +5,7 @@ import ItemListContainer from './components/ItemListContainer';
 import CarritoProvider from './components/CarritoContext';
 import Carrito from './components/Carrito';
 import ProductoDetailContainer from './components/ProductoDetailContainer';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/Carrito" element={<Carrito/>}/>
         <Route path="/producto/:id" element={<ProductoDetailContainer />} />
       </Routes>
+      <Toaster/>
       <Footer/>
     </CarritoProvider>
   );
